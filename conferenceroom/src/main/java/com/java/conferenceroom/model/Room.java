@@ -1,21 +1,26 @@
 package com.java.conferenceroom.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Data
 @Builder
+@Getter
+@Setter
 public class Room {
 
     private  int id;
     private String name;
     private Floor floor;
     private Buildings buildings;
-    SlotType[]slots= new SlotType[24];
+    private SlotType[]slots;
 
 
+    public SlotType[] getSlotFromModel() {
+        SlotType[] type= new SlotType[24];
+        for(int i=0;i<type.length;i++){
+            type[i]=SlotType.AVAILABE;
+        }
+        this.slots=type;
+        return  type;
+    }
 }

@@ -15,10 +15,13 @@ import java.util.Map;
 public class FloorRepository {
 
     static Integer counter= 0;
-    Map<Integer, Floor> floorMap = new HashMap<>();
+    public  Map<Integer, Floor> floorMap = new HashMap<>();
 
     public Floor create(Floor floor) {
-        floorMap.put(counter+1,floor);
+
+        counter++;
+        floor.setId(counter);
+        floorMap.put(counter,floor);
         return floor;
     }
 
@@ -27,10 +30,21 @@ public class FloorRepository {
         for(Map.Entry<Integer,Floor>map : floorMap.entrySet()){
             if(map.getValue().getName().equals(floorName)){
                 Floor floors = map.getValue();
-                floors.getRooms().add(room);
+                floors.addFloor(room);
                 break;
             }
         }
         return room;
+    }
+
+
+    public Floor getFloor (String floorName){
+        for(Map.Entry<Integer,Floor>map : floorMap.entrySet()){
+            if(map.getValue().getName().equals(floorName)){
+                Floor floor = map.getValue();
+                return floor;
+            }
+        }
+        return null;
     }
 }

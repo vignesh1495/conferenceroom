@@ -5,17 +5,21 @@ import com.java.conferenceroom.model.Buildings;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class CreateBuildingRequest {
 
-    private Integer id;
-    private String name;
+    private String name="B";
 
-    public Buildings toBuilding(Integer id,String name){
-      return   Buildings.builder().id(id).name(name).build();
+    public Buildings toBuilding(){
+
+      return   Buildings.builder().name(name).build();
     }
 
 }

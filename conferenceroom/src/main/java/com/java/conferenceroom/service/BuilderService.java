@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@NoArgsConstructor
 @AllArgsConstructor
 public class BuilderService {
 
     BuildingRepository buildingRepository;
 
     public Buildings createBuilding(Buildings buildings){
-        return buildingRepository.create(buildings);
+        Buildings build = buildingRepository.create(buildings);
+        System.out.println(build.getId()+" "+build.getName());
+        return build;
     }
 
     public Floor addFloor(String buildingName, Floor floor){

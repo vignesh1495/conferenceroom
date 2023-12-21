@@ -6,18 +6,23 @@ import com.java.conferenceroom.model.Floor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class CreateFloorRequest {
 
     private Integer id;
     private String name;
-    private Integer buildingId;
+    private String buildingName;
 
-    public Floor toBuilding(Integer id, String name){
-      return   Floor.builder().id(id).name(name).build();
+    public Floor toFloor( String name){
+
+      return   Floor.builder().id(Integer.parseInt(name)).name("F"+name).build();
     }
 
 }

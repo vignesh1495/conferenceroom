@@ -14,9 +14,11 @@ import java.util.Map;
 public class RoomRepository {
 
     static Integer counter= 0;
-    Map<Integer, Room> roomMap = new HashMap<>();
+    public  Map<Integer, Room> roomMap = new HashMap<>();
     public Room create(Room room) {
-        roomMap.put(counter+1,room);
+        counter++;
+        room.setId(counter);
+        roomMap.put(counter,room);
         return room;
     }
 
@@ -30,6 +32,9 @@ public class RoomRepository {
     }
 
 
+    public boolean isPresent(Room room){
+      return   roomMap.entrySet().stream().filter(e->e.getValue().getName().equals(room.getName())).count()>0;
+    }
 
     public Room findRoom (String roomName){
         for(Map.Entry<Integer, Room>map : roomMap.entrySet()){
